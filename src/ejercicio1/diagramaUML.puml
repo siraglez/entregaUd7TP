@@ -1,0 +1,18 @@
+@startuml
+class DadoIA {
+    - caras: int
+    - frecuencias: Map<Integer, Integer>
+
+    + DadoIA(caras: int)
+    + lanzar(): int
+    - actualizarFrecuencia(resultado: int): void
+    + probabilidad(cara: int): double
+    - getLanzamientosTotales(): int
+}
+
+class SimuladorDadosIA {
+    + main(args: String[]): void
+}
+
+DadoIA "1" --> "*" SimuladorDadosIA
+@enduml
