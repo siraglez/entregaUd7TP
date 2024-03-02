@@ -1,0 +1,76 @@
+#Clase DadoIA
+Clase DadoIA {
+    #Variables de instancia
+    Entero caras
+    Mapa<Integer, Integer> frecuencias
+
+    #Constructor
+    DadoIA(Entero caras) {
+        this.caras = caras
+        this.frecuencias = nuevo Mapa<Integer, Integer>()
+        Para cada i desde 1 hasta caras {
+            frecuencias.put(i, 0)
+        }
+    }
+
+    #Método para lanzar el dado
+    Entero lanzar() {
+        Random random = nuevo Random()
+        Entero resultado = random.nextInt(caras) + 1
+        actualizarFrecuencia(resultado)
+        devolver resultado
+    }
+
+    #Método privado para actualizar la frecuencia
+    Procedimiento actualizarFrecuencia(Entero resultado) {
+        frecuencias.put(resultado, frecuencias.get(resultado) + 1)
+    }
+
+    #Método para obtener la probabilidad de una cara específica
+    Real probabilidad(Entero cara) {
+        Si frecuencias.contiene(cara) entonces
+            devolver (Real) frecuencias.get(cara) / getLanzamientosTotales()
+        Sino
+            devolver 0.0
+    }
+
+    #Método privado para obtener el total de lanzamientos
+    Entero getLanzamientosTotales() {
+        Entero lanzamientosTotales = 0
+        Para cada frecuencia en frecuencias.valores() {
+            lanzamientosTotales += frecuencia
+        }
+        devolver lanzamientosTotales
+    }
+}
+
+#Clase SimuladorDadosIA
+Clase SimuladorDadosIA {
+    #Método principal
+    Procedimiento principal() {
+        DadoIA dado1 = nuevo DadoIA(6)
+        DadoIA dado2 = nuevo DadoIA(10)
+        DadoIA dado3 = nuevo DadoIA(12)
+
+        Entero sumaDados = 0
+
+        Mientras sumaDados < 20 Hacer {
+            Entero resultado1 = dado1.lanzar()
+            Entero resultado2 = dado2.lanzar()
+            Entero resultado3 = dado3.lanzar()
+
+            #Procesar y mostrar resultados con predicciones de IA
+            Mostrar "Lanzamiento dado 1: " + resultado1
+            Mostrar "Probabilidad dado 1, cara 1: " + dado1.probabilidad(1)
+
+            Mostrar "Lanzamiento dado 2: " + resultado2
+            Mostrar "Probabilidad dado 2, cara 1: " + dado2.probabilidad(1)
+
+            Mostrar "Lanzamiento dado 3: " + resultado3
+            Mostrar "Probabilidad dado 3, cara 1: " + dado3.probabilidad(1)
+
+            sumaDados = resultado1 + resultado2 + resultado3
+            Mostrar "Suma de los dados: " + sumaDados
+        }
+    }
+}
