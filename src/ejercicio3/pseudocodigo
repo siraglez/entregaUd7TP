@@ -1,0 +1,38 @@
+EstadoCelda:
+  Enumeración de los estados de una celda: AGUA, BARCO, TOCADO, HUNDIDO
+
+Cuadricula:
+  Atributos:
+    - tamanioX: entero
+    - tamanioY: entero
+    - estadoCeldas: matriz de EstadoCelda
+
+  Métodos:
+    - Cuadricula(tamanioX: entero, tamanioY: entero): constructor
+    - getTamanioX(): entero
+    - getTamanioY(): entero
+    - getEstadoCeldas(): matriz de EstadoCelda
+    - mostrarEstado(): void
+    - inicializarCuadricula(): void
+    - colocarBarco(x: entero, y: entero): void
+    - atacarCelda(x: entero, y: entero): void
+    - verificarHundimiento(): boolean
+    - obtenerEstadoCelda(x: entero, y: entero): EstadoCelda
+    - mostrarTablero(): void
+    - reiniciarCuadricula(): void
+    - generarCuadriculaAleatoria(tamanoX: entero, tamanoY: entero, numBarcos: entero): Cuadricula
+    - coordenadasValidas(x: entero, y: entero): boolean
+
+CuadriculaAvanzada:
+  Atributos adicionales:
+    - factorClima: decimal
+    - factorCorrientes: decimal
+
+  Métodos adicionales:
+    - CuadriculaAvanzada(tamanioX: entero, tamanioY: entero): constructor
+    - generarFactorAleatorio(): decimal
+    - actualizarSimulacionAmbiental(nuevoFactorClima: decimal, nuevoFactorCorrientes: decimal): void
+    - obtenerVelocidadCorriente(): decimal
+    - modificarFactorClima(cambio: decimal): void
+    - calcularInfluenciaClimaticaEnAtaque(): decimal
+    - mostrarEstado(): void
