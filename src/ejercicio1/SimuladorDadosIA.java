@@ -1,9 +1,5 @@
 package ejercicio1;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 public class SimuladorDadosIA {
     public static void main(String[] args) {
         DadoIA dado1 = new DadoIA(6);
@@ -21,11 +17,11 @@ public class SimuladorDadosIA {
             System.out.println("Lanzamiento dado 1: " + resultado1);
             System.out.println("Probabilidad dado 1, cara 1: " + dado1.probabilidad(1));
 
-            System.out.println("Lanzamiento dado 2: " + resultado1);
-            System.out.println("Probabilidad dado 2, cara 1: " + dado1.probabilidad(1));
+            System.out.println("Lanzamiento dado 2: " + resultado2);
+            System.out.println("Probabilidad dado 2, cara 1: " + dado2.probabilidad(1));
 
-            System.out.println("Lanzamiento dado 3: " + resultado1);
-            System.out.println("Probabilidad dado 3, cara 1: " + dado1.probabilidad(1));
+            System.out.println("Lanzamiento dado 3: " + resultado3);
+            System.out.println("Probabilidad dado 3, cara 1: " + dado3.probabilidad(1));
 
             sumaDados = resultado1 + resultado2 + resultado3;
             System.out.println("Suma de los dados: " + sumaDados);
