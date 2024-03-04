@@ -1,0 +1,25 @@
+@startuml
+
+class CuadriculaIA {
+    - cuadricula: char[][]
+    - disparosJugador: boolean[][]
+    - disparosComputadora: boolean[][]
+    - random: Random
+    + CuadriculaIA()
+    + inicializarCuadriculas(): void
+    + mostrarCuadriculaJugador(): void
+    + mostrarCuadriculaComputadora(): void
+    + turnoJugador(fila: int, columna: int): void
+    + turnoComputadora(): void
+    + validarCoordenadas(fila: int, columna: int): boolean
+    + todasLasCoordenadasHundidas(): boolean
+}
+
+class MicroGuerraBarcosIA {
+    + main(args: String[]): void
+    + juegoTerminado(cuadriculaJugador: CuadriculaIA, cuadriculaComputadora: CuadriculaIA): boolean
+}
+
+CuadriculaIA -- MicroGuerraBarcosIA
+
+@enduml
