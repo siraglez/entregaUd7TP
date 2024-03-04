@@ -122,3 +122,94 @@ Clase SimuladorDadosIA {
 }
 
 ```
+
+
+# Ejercicio 3: Micro Guerra de Barcos
+
+Este código representa una implementación básica de un juego de "Micro Guerra de Barcos" utilizando las clases `Cuadricula` y `CuadriculaAvanzada`.
+
+## 1. `EstadoCelda` (Enum)
+
+Define un enumerador llamado `EstadoCelda` que representa los posibles estados de una celda en la cuadrícula: AGUA, BARCO, TOCADO, y HUNDIDO.
+
+## 2. `Cuadricula` (Clase Base)
+
+- **Atributos:**
+
+  - `tamanioX` y `tamanioY`: Representan las dimensiones de la cuadrícula.
+  - `estadoCeldas`: Es una matriz que almacena el estado de cada celda.
+- **Métodos:**
+
+  - `Cuadricula(int tamanioX, int tamanioY)`: Constructor que inicializa la cuadrícula con las dimensiones especificadas.
+  - `mostrarEstado()`: Muestra el estado general de la cuadrícula.
+  - `inicializarCuadricula()`: Inicializa todas las celdas de la cuadrícula como AGUA.
+  - `colocarBarco(int x, int y)`: Coloca un barco en la posición especificada.
+  - `atacarCelda(int x, int y)`: Realiza un ataque a la celda especificada y actualiza su estado según el resultado.
+  - `verificarHundimiento()`: Verifica si todos los barcos han sido hundidos.
+  - `obtenerEstadoCelda(int x, int y)`: Obtiene el estado de una celda en las coordenadas dadas.
+  - `mostrarTablero()`: Muestra el tablero completo con los estados de las celdas.
+  - `reiniciarCuadricula()`: Reinicia la cuadrícula volviendo a inicializar todas las celdas como AGUA.
+  - `generarCuadriculaAleatoria(int tamanoX, int tamanoY, int numBarcos)`: Genera una cuadrícula aleatoria con barcos en posiciones aleatorias.
+  - `coordenadasValidas(int x, int y)`: Verifica si las coordenadas dadas están dentro de los límites de la cuadrícula.
+
+## 3. `CuadriculaAvanzada` (Clase Derivada de `Cuadricula`)
+
+- **Atributos Adicionales:**
+
+  - `factorClima` y `factorCorrientes`: Representan factores para la simulación ambiental.
+- **Métodos Adicionales:**
+
+  - `generarFactorAleatorio()`: Genera un factor aleatorio para la simulación ambiental.
+  - `actualizarSimulacionAmbiental(double nuevoFactorClima, double nuevoFactorCorrientes)`: Actualiza los factores de simulación ambiental.
+  - `obtenerVelocidadCorriente()`: Calcula la velocidad de la corriente en función del factor de corrientes.
+  - `modificarFactorClima(double cambio)`: Modifica el factor de clima según el cambio especificado.
+  - `calcularInfluenciaClimaticaEnAtaque()`: Calcula cómo el factor de clima afecta a la precisión de los ataques.
+  - `mostrarEstado()`: Muestra el estado de la cuadrícula avanzada, incluyendo los factores de simulación ambiental.
+
+## 4. `MicroGuerraBarcos` (Clase Principal)
+
+- En el método `main`, se crea una instancia de `Cuadricula` y otra de `CuadriculaAvanzada`, se colocan barcos aleatorios y se realizan ataques mostrando el estado inicial y final de cada cuadrícula.
+
+# Pseudocódigo
+
+```java
+EstadoCelda:
+  Enumeración de los estados de una celda: AGUA, BARCO, TOCADO, HUNDIDO
+
+Cuadricula:
+  Atributos:
+    - tamanioX: entero
+    - tamanioY: entero
+    - estadoCeldas: matriz de EstadoCelda
+
+  Métodos:
+    - Cuadricula(tamanioX: entero, tamanioY: entero): constructor
+    - getTamanioX(): entero
+    - getTamanioY(): entero
+    - getEstadoCeldas(): matriz de EstadoCelda
+    - mostrarEstado(): void
+    - inicializarCuadricula(): void
+    - colocarBarco(x: entero, y: entero): void
+    - atacarCelda(x: entero, y: entero): void
+    - verificarHundimiento(): boolean
+    - obtenerEstadoCelda(x: entero, y: entero): EstadoCelda
+    - mostrarTablero(): void
+    - reiniciarCuadricula(): void
+    - generarCuadriculaAleatoria(tamanoX: entero, tamanoY: entero, numBarcos: entero): Cuadricula
+    - coordenadasValidas(x: entero, y: entero): boolean
+
+CuadriculaAvanzada:
+  Atributos adicionales:
+    - factorClima: decimal
+    - factorCorrientes: decimal
+
+  Métodos adicionales:
+    - CuadriculaAvanzada(tamanioX: entero, tamanioY: entero): constructor
+    - generarFactorAleatorio(): decimal
+    - actualizarSimulacionAmbiental(nuevoFactorClima: decimal, nuevoFactorCorrientes: decimal): void
+    - obtenerVelocidadCorriente(): decimal
+    - modificarFactorClima(cambio: decimal): void
+    - calcularInfluenciaClimaticaEnAtaque(): decimal
+    - mostrarEstado(): void
+
+```
