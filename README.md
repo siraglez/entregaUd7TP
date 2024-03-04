@@ -124,6 +124,92 @@ Clase SimuladorDadosIA {
 ```
 
 
+# Ejercicio 2: Sistema de Gestión de Clientes con Recomendaciones Personalizadas
+
+## 1. Descripción
+
+Este proyecto implementa un sistema de gestión de clientes con recomendaciones personalizadas de libros. Incluye las siguientes clases:
+
+- **`Productos` (Clase abstracta):** Define atributos comunes para todos los productos y declara un método abstracto `getTipo()`.
+- **`ProductosInterfaz` (Interfaz):** Define la interfaz para obtener el catálogo de productos.
+- **`Libro` (Clase):** Subclase de `Productos` que representa un libro con atributos adicionales como el autor. Implementa el método abstracto `getTipo()`.
+- **`Cliente` (Clase):** Representa a un cliente con un nombre y un historial de compras. Contiene métodos para agregar compras al historial y obtener recomendaciones personalizadas.
+- **`GestorProductos` (Clase):** Implementa la interfaz `ProductosInterfaz` y gestiona un catálogo de productos. Contiene un método para agregar productos al catálogo.
+
+## 2. Algoritmo Principal (Main)
+
+En el bloque principal del algoritmo:
+
+1. Se crea un `GestorProductos` y se agregan algunos libros al catálogo.
+2. Se muestra el catálogo de productos.
+3. Se crea un `Cliente`.
+4. Se simula una compra agregando un producto al historial del cliente.
+5. Se obtienen recomendaciones personalizadas para el cliente y se muestran en la consola.
+
+Este código proporciona una estructura básica para un sistema de gestión de clientes con recomendaciones personalizadas. Puedes expandir y mejorar estas clases según tus necesidades, implementando algoritmos más sofisticados para las recomendaciones y añadiendo funcionalidades adicionales.
+
+# Pseudocódigo
+
+```java
+Algoritmo principal:
+
+    Crear un GestorProductos
+    Agregar algunos productos (por ejemplo, libros) al catálogo del GestorProductos
+
+    Mostrar el catálogo de productos usando el método obtenerCatalogo del GestorProductos
+
+    Crear un Cliente
+
+    Simular una compra:
+        Obtener un producto del catálogo del GestorProductos
+        Agregar el producto al historial de compras del Cliente
+
+    Obtener recomendaciones personalizadas para el Cliente:
+        Implementar un algoritmo de recomendación basado en su historial de compras y preferencias
+        Mostrar las recomendaciones en la consola
+
+Fin del algoritmo principal
+
+Clase Cliente:
+    Atributos:
+        nombre: cadena de texto
+        historialCompras: lista de Productos
+
+    Métodos:
+        Constructor(nombre: cadena de texto): inicializa el Cliente con un nombre dado
+        obtenerRecomendaciones(): método para obtener recomendaciones personalizadas basadas en el historial de compras
+        agregarCompra(producto: Producto): método para agregar una compra al historial
+
+Clase Productos:
+    Atributos:
+        nombre: cadena de texto
+        precio: número decimal
+
+    Método abstracto:
+        getTipo(): método abstracto que debe ser implementado por las clases que heredan de Productos
+
+Clase Libro hereda de Productos:
+    Atributos:
+        autor: cadena de texto
+
+    Método:
+        getTipo(): implementación del método abstracto de Productos para obtener el tipo (en este caso, "Libro")
+
+Interfaz ProductosInterfaz:
+    Método:
+        obtenerCatalogo(): método que debe ser implementado por las clases que deseen proporcionar un catálogo de productos
+
+Clase GestorProductos implementa ProductosInterfaz:
+    Atributos:
+        catalogo: lista de Productos
+
+    Métodos:
+        Constructor(): inicializa el GestorProductos con un catálogo vacío
+        agregarProducto(producto: Producto): método para agregar un producto al catálogo
+        obtenerCatalogo(): implementación del método de la interfaz para obtener el catálogo
+
+```
+
 # Ejercicio 3: Micro Guerra de Barcos
 
 Este código representa una implementación básica de un juego de "Micro Guerra de Barcos" utilizando las clases `Cuadricula` y `CuadriculaAvanzada`.
