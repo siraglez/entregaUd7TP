@@ -1,0 +1,38 @@
+@startuml
+!define RECTANGLE class
+!define ABSTRACT abstract
+
+RECTANGLE Productos {
+  + nombre: String
+  + precio: double
+  {abstract} # getTipo(): String
+}
+
+class Libro {
+  + autor: String
+}
+
+Productos <|-- Libro
+
+interface ProductosInterfaz {
+  + obtenerCatalogo(): List<Productos>
+}
+
+class GestorProductos {
+  - catalogo: List<Productos>
+  + agregarProducto(producto: Productos): void
+  + obtenerCatalogo(): List<Productos>
+}
+
+class Cliente {
+  - nombre: String
+  - historialCompras: List<Productos>
+  + obtenerRecomendaciones(): List<Productos>
+  + agregarCompra(producto: Productos): void
+}
+
+Clientes --|> ProductosInterfaz
+Clientes *-- HistorialDeCompras: contiene >
+GestorProductos --> ProductosInterfaz
+
+@enduml
