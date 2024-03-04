@@ -213,3 +213,162 @@ CuadriculaAvanzada:
     - mostrarEstado(): void
 
 ```
+
+
+# Ejercicio 4: Micro Guerra de Barcos con Estrategia de IA
+
+## 1. Clase `CuadriculaIA`
+
+La clase `CuadriculaIA` implementa un juego de Micro Guerra de Barcos con Estrategia de IA en Java.
+
+### 1.1. Atributos:
+
+- `cuadricula`: Matriz de caracteres que representa la cuadrícula del juego con barcos y disparos.
+- `disparosJugador`: Matriz booleana que registra los disparos del jugador.
+- `disparosComputadora`: Matriz booleana que registra los disparos de la computadora.
+- `random`: Instancia de la clase `Random` para generar números aleatorios.
+
+### 1.2. Constructor (`CuadriculaIA()`):
+
+- Inicializa las matrices y la instancia de `Random`.
+- Llama al método `inicializarCuadriculas()` para colocar barcos aleatorios en la cuadrícula.
+
+### 1.3. Métodos:
+
+- `inicializarCuadriculas()`: Coloca aleatoriamente 5 barcos (`'B'`) en la cuadrícula.
+- `mostrarCuadriculaJugador()`: Muestra la cuadrícula actual del jugador.
+- `mostrarCuadriculaComputadora()`: Muestra la cuadrícula de la computadora, ocultando los barcos y mostrando los resultados de los disparos.
+- `turnoJugador(int fila, int columna)`: Realiza el turno del jugador: actualiza la cuadrícula y verifica si se ha hundido algún barco.
+- `turnoComputadora()`: Implementa una estrategia de IA para el turno de la computadora: realiza un disparo y ajusta la estrategia.
+- `validarCoordenadas(int fila, int columna)`: Verifica si las coordenadas dadas son válidas.
+- `todasLasCoordenadasHundidas()`: Verifica si todos los barcos en la cuadrícula han sido hundidos.
+
+## 2. Clase `MicroGuerraBarcosIA`
+
+El programa principal (`MicroGuerraBarcosIA`) permite jugar al Micro Guerra de Barcos con Estrategia de IA.
+
+### 2.1. Método `main(String[] args)`:
+
+- Crea instancias de las cuadrículas del jugador y de la computadora.
+- Utiliza un bucle `while` para iterar hasta que el juego haya terminado.
+- Permite al jugador ingresar sus coordenadas durante su turno.
+- Muestra el estado actual del juego después de cada turno.
+- Al final del juego, muestra el resultado final.
+
+### 2.2. Método `juegoTerminado(CuadriculaIA cuadriculaJugador, CuadriculaIA cuadriculaComputadora)`:
+
+- Lógica para determinar si el juego ha terminado (Todos los barcos se han hundido).
+
+# Pseudocódigo
+
+```java
+clase CuadriculaIA:
+    - cuadricula: arreglo de caracteres
+    - disparosJugador: arreglo de booleanos
+    - disparosComputadora: arreglo de booleanos
+    - random: instancia de Random
+
+    método CuadriculaIA():
+        cuadricula = nueva matriz de 10x10
+        disparosJugador = nueva matriz de 10x10
+        disparosComputadora = nueva matriz de 10x10
+        random = nueva instancia de Random
+
+        inicializarCuadriculas()
+
+    método inicializarCuadriculas():
+        // Colocar aleatoriamente 5 barcos en la cuadrícula
+        para i desde 1 hasta 5:
+            fila = random.nextInt(10)
+            columna = random.nextInt(10)
+            cuadricula[fila][columna] = 'B'  // 'B' representa un barco
+
+    método mostrarCuadriculaJugador():
+        // Mostrar la cuadrícula actual del jugador
+        imprimir "Cuadrícula del Jugador:"
+        mostrarCuadricula(cuadricula)
+
+    método mostrarCuadriculaComputadora():
+        // Mostrar la cuadrícula de la computadora (ocultando barcos y mostrando resultados de disparos)
+        imprimir "Cuadrícula de la Computadora:"
+        para cada fila, columna en disparosComputadora:
+            si disparosComputadora[fila][columna]:
+                si cuadricula[fila][columna] == 'B':
+                    imprimir 'X'  // Acertó en un barco
+                sino:
+                    imprimir 'O'  // Falló en alcanzar un barco
+            sino:
+                imprimir '~'  // Celda no disparada
+
+    método mostrarCuadricula(cuadricula: arreglo de caracteres):
+        // Método auxiliar para mostrar una cuadrícula dada
+        para cada fila en cuadricula:
+            para cada columna en fila:
+                imprimir cuadricula[fila][columna] + " "
+            imprimir nueva línea
+        imprimir nueva línea
+
+    método turnoJugador(fila: entero, columna: entero):
+        // Lógica del turno del jugador, actualizar cuadrícula y verificar si se hundió algún barco
+        si validarCoordenadas(fila, columna) y no disparosJugador[fila][columna]:
+            disparosJugador[fila][columna] = verdadero
+            si cuadricula[fila][columna] == 'B':
+                imprimir "¡Has acertado en un barco!"
+                // Lógica adicional para verificar si se hundió el barco
+            sino:
+                imprimir "Agua. No has alcanzado ningún barco."
+        sino:
+            imprimir "Coordenadas inválidas o ya disparaste en esta posición. Inténtalo de nuevo."
+
+    método turnoComputadora():
+        // Estrategia de IA para el turno de la computadora, realizar un disparo y adaptar la estrategia
+        fila = random.nextInt(10)
+        columna = random.nextInt(10)
+
+        si no disparosComputadora[fila][columna]:
+            disparosComputadora[fila][columna] = verdadero
+            si cuadricula[fila][columna] == 'B':
+                imprimir "¡La Computadora ha acertado en un barco!"
+                // Lógica adicional para verificar si se hundió el barco
+            sino:
+                imprimir "La Computadora ha disparado al agua. No ha alcanzado ningún barco."
+        sino:
+            // Repetir el turno si ya disparó en esa posición
+            turnoComputadora()
+
+    función validarCoordenadas(fila: entero, columna: entero) -> booleano:
+        retornar fila >= 0 y fila < 10 y columna >= 0 y columna < 10
+
+    función todasLasCoordenadasHundidas() -> booleano:
+        para cada fila, columna en cuadricula:
+            si cuadricula[fila][columna] == 'B' y no disparosJugador[fila][columna]:
+                retornar falso  // Aún hay barcos no hundidos
+        retornar verdadero  // Todos los barcos han sido hundidos
+
+// Programa principal
+cuadriculaJugador = nueva instancia de CuadriculaIA
+cuadriculaComputadora = nueva instancia de CuadriculaIA
+
+// Lógica del juego
+mientras no juegoTerminado(cuadriculaJugador, cuadriculaComputadora):
+    // Turno del jugador
+    imprimir "Turno del Jugador:"
+    pedir fila al usuario
+    pedir columna al usuario
+    cuadriculaJugador.turnoJugador(fila, columna)
+
+    // Turno de la computadora
+    cuadriculaComputadora.turnoComputadora()
+
+    // Mostrar el estado actual del juego
+    cuadriculaJugador.mostrarCuadriculaJugador()
+    cuadriculaComputadora.mostrarCuadriculaComputadora()
+
+// Mostrar resultado final del juego
+imprimir "Juego Terminado"
+si cuadriculaJugador.todasLasCoordenadasHundidas():
+    imprimir "¡Has ganado! Todos los barcos de la computadora se han hundido."
+sino:
+    imprimir "La computadora ha ganado. Todos tus barcos se han hundido."
+
+```
