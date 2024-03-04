@@ -1,0 +1,46 @@
+@startuml
+
+enum EstadoCelda {
+  AGUA
+  BARCO
+  TOCADO
+  HUNDIDO
+}
+
+class Cuadricula {
+  - tamanioX: int
+  - tamanioY: int
+  - estadoCeldas: EstadoCelda[][]
+
+  + Cuadricula(tamanioX: int, tamanioY: int)
+  + getTamanioX(): int
+  + getTamanioY(): int
+  + getEstadoCeldas(): EstadoCelda[][]
+  + mostrarEstado(): void
+  - inicializarCuadricula(): void
+  + colocarBarco(x: int, y: int): void
+  + atacarCelda(x: int, y: int): void
+  + verificarHundimiento(): boolean
+  + obtenerEstadoCelda(x: int, y: int): EstadoCelda
+  + mostrarTablero(): void
+  + reiniciarCuadricula(): void
+  + generarCuadriculaAleatoria(tamanoX: int, tamanoY: int, numBarcos: int): Cuadricula
+  + coordenadasValidas(x: int, y: int): boolean
+}
+
+class CuadriculaAvanzada {
+  - factorClima: double
+  - factorCorrientes: double
+
+  + CuadriculaAvanzada(tamanioX: int, tamanioY: int)
+  + generarFactorAleatorio(): double
+  + actualizarSimulacionAmbiental(nuevoFactorClima: double, nuevoFactorCorrientes: double): void
+  + obtenerVelocidadCorriente(): double
+  + modificarFactorClima(cambio: double): void
+  + calcularInfluenciaClimaticaEnAtaque(): double
+  + mostrarEstado(): void
+}
+
+Cuadricula --|> CuadriculaAvanzada
+
+@enduml
